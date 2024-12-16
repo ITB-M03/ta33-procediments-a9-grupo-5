@@ -10,6 +10,9 @@ fun main() {
             "(3) TUsual...................40.00€ (1a zona) \n" +
             "(4) TFamiliar...............10.00€ (1a zona) \n" +
             "(5) TJove.....................80.00€ (1a zona)", scanner)
+
+    val opcion2 = menu2(opcion1, "Escull en quina zona vols viatjar: \n"
+        + "(1) Zona 1 \n(2) Zona 2 \n(3) Zona 3", scanner)
     cerrarScanner(scanner)
 }
 /**
@@ -38,7 +41,12 @@ fun menu1(msg: String, scanner: Scanner):Int{
     return opcion
 }
 
-fun menu2(opcion1:Int, msg:String, scanner:Scanner){
+fun menu2(opcion1:Int, msg:String, scanner:Scanner): Int{
     println(msg)
+    val opcionZona = scanner.nextInt()
+    return opcionZona
+}
+
+fun elegido(opcion1: Int){
 
 }
