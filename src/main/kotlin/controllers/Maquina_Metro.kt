@@ -14,7 +14,7 @@ fun main() {
     val opcion2 = menu2(opcion1, "Escull en quina zona vols viatjar: \n"
         + "(1) Zona 1 \n(2) Zona 2 \n(3) Zona 3", scanner)
 
-    menu3(opcion1, opcion2, scanner)
+    menu3(opcion1, opcion2, scanner, compra = mutableListOf())
 
     cerrarScanner(scanner)
 }
@@ -49,12 +49,16 @@ fun menu2(opcion1:Int, msg:String, scanner:Scanner): Int{
     val opcionZona = scanner.nextInt()
     return opcionZona
 }
-fun menu3(opcion1: Int, opcion2: Int, scanner: Scanner){
+fun compra(tiquetS: MutableList<String>){
+    val tiquetS = mutableListOf<String>()
+}
+
+fun menu3(opcion1: Int, opcion2: Int, scanner: Scanner, compra:MutableList<String>){
     var intento = 0
     var seguir = true
     var opcionOriginal = opcion1
     if(intento in 0..3) {
-        while (seguir) {
+        while (seguir && compra.size != 3) {
             when (opcionOriginal) {
                 1 -> billetSenzill(opcion1, opcion2, "Has escollit la opcio: billet Senzill, zona $opcion2")
                 2 -> billetCasual(opcion1, opcion2, "Has escollit la opcio: TCasual, zona $opcion2 ")
