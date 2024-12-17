@@ -57,20 +57,19 @@ fun menu3(opcion1: Int, opcion2: Int, scanner: Scanner, compra:MutableList<Strin
     var intento = 0
     var seguir = true
     var opcionOriginal = opcion1
-    if(intento in 0..3) {
-        while (seguir && compra.size != 3) {
-            when (opcionOriginal) {
-                1 -> billetSenzill(opcion1, opcion2, "Has escollit la opcio: billet Senzill, zona $opcion2")
-                2 -> billetCasual(opcion1, opcion2, "Has escollit la opcio: TCasual, zona $opcion2 ")
-                3 -> billetUsual(opcion1, opcion2, "Has escollit la opcio: TUsual, zona $opcion2 ")
-                4 -> billetFamiliar(opcion1, opcion2, "Has escollit la opcio: TFamiliar, zona $opcion2 ")
-                5 -> billetJove(opcion1, opcion2, "Has escollit la opcio: TJove, zona $opcion2")
-            }
+    var zonaOriginal = opcion2
+        while (seguir && intento < 3) {
+            menuPrincipal(opcion1, opcion2, compra)
             println("Vols seguir comprant? [S,N]")
-            val opcion3 = scanner.nextLine()
+            scanner.nextLine()
+            val opcion3 = scanner.nextLine().uppercase()
+
             if (opcion3 == "S") {
                 menuSeguir(opcion1, opcion2)
                 opcionOriginal = scanner.nextInt()
+                menuSegui2(opcion1, opcion2, opcionOriginal)
+                zonaOriginal = scanner.nextInt()
+                scanner.nextLine()
                 intento++
                 seguir = true
             } else {
@@ -78,7 +77,21 @@ fun menu3(opcion1: Int, opcion2: Int, scanner: Scanner, compra:MutableList<Strin
             }
         }
     }
+
+fun menuPrincipal(opcion1: Int, opcion2: Int, compra:MutableList<String>){
+    when (opcion1) {
+        1 -> billetSenzill(opcion1, opcion2, "Has escollit la opcio: billet Senzill, zona $opcion2")
+        2 -> billetCasual(opcion1, opcion2, "Has escollit la opcio: TCasual, zona $opcion2 ")
+        3 -> billetUsual(opcion1, opcion2, "Has escollit la opcio: TUsual, zona $opcion2 ")
+        4 -> billetFamiliar(opcion1, opcion2, "Has escollit la opcio: TFamiliar, zona $opcion2 ")
+        5 -> billetJove(opcion1, opcion2, "Has escollit la opcio: TJove, zona $opcion2")
+    }
 }
+
+fun guardarPrincipal(){
+
+}
+
 
 fun menuSeguir(opcion1: Int, opcion2: Int){
     println("Escull quin títol vols comprar: \n" +
@@ -87,6 +100,10 @@ fun menuSeguir(opcion1: Int, opcion2: Int){
             "(3) TUsual...................40.00€ (1a zona) \n" +
             "(4) TFamiliar...............10.00€ (1a zona) \n" +
             "(5) TJove.....................80.00€ (1a zona)")
+}
+
+fun menuSegui2(opcion1: Int, opcion2: Int, opcion3: Int){
+    println("Escull en quina zona vols viatjar: \n(1) Zona 1 \n(2) Zona 2 \n(3) Zona 3")
 }
 
 fun billetSenzill(opcion1: Int, opcion2: Int, msgS:String):Double{
